@@ -21,27 +21,14 @@ db.users.find({}, { name: 1, age: 1, _id: 0 })
 
 ### Common Query Operators
 
-| Operator  | Description                      | Example Query                                                               |
-| --------- | -------------------------------- | --------------------------------------------------------------------------- |
-| `$eq`     | Equal to                         | `{ age: { $eq: 18 } }` → matches docs where `age` = 18                      |
-| `$ne`     | Not equal to                     | `{ status: { $ne: "active" } }` → matches docs where `status` ≠ "active"    |
-| `$gt`     | Greater than                     | `{ qty: { $gt: 20 } }` → matches docs where `qty` > 20                      |
-| `$gte`    | Greater than or equal to         | `{ qty: { $gte: 20 } }` → matches docs where `qty` ≥ 20                     |
-| `$lt`     | Less than                        | `{ qty: { $lt: 20 } }` → matches docs where `qty` < 20                      |
-| `$lte`    | Less than or equal to            | `{ qty: { $lte: 20 } }` → matches docs where `qty` ≤ 20                     |
-| `$in`     | Matches any value in an array    | `{ city: { $in: ["NY", "LA"] } }` → matches docs where `city` is NY or LA   |
-| `$nin`    | Not in array                     | `{ city: { $nin: ["NY", "LA"] } }` → excludes docs where `city` is NY or LA |
-| `$and`    | Logical AND                      | `{ $and: [ { age: { $gt: 18 } }, { city: "NY" } ] }`                        |
-| `$or`     | Logical OR                       | `{ $or: [ { city: "NY" }, { city: "LA" } ] }`                               |
-| `$not`    | Negates query condition          | `{ age: { $not: { $gt: 30 } } }` → matches docs where `age` ≤ 30            |
-| `$exists` | Field existence check            | `{ phone: { $exists: true } }` → matches docs where `phone` field exists    |
-| `$regex`  | Pattern matching (like SQL LIKE) | `{ name: { $regex: /^A/ } }` → matches docs where `name` starts with A      |
-| `$all`       | Matches arrays that contain **all** specified elements                  | `{ tags: { $all: ["red", "round"] } }` → matches docs where `tags` has both `"red"` and `"round"`                                                    |
-| `$size`      | Matches arrays with the specified length                                | `{ tags: { $size: 3 } }` → matches docs where `tags` array has exactly 3 elements                                                                    |
-| `$elemMatch` | Matches if **at least one array element** satisfies multiple conditions | `{ reviews: { $elemMatch: { rating: 5, user: "Alice" } } }` → matches docs where a single `reviews` element has both `rating: 5` and `user: "Alice"` |
-| Dot notation | Query a specific array element by index                                 | `{ "tags.0": "red" }` → matches docs where the first element in `tags` is `"red"`                                                                    |
-
-
+| Operator | Meaning      | Example                                            |
+| -------- | ------------ | -------------------------------------------------- |
+| `$eq`    | Equal        | `{ age: { $eq: 18 } }`                             |
+| `$gt`    | Greater than | `{ age: { $gt: 18 } }`                             |
+| `$lt`    | Less than    | `{ age: { $lt: 18 } }`                             |
+| `$in`    | In array     | `{ name: { $in: ["Alice", "Bob"] } }`              |
+| `$and`   | Logical AND  | `{ $and: [{ age: { $gt: 18 } }, { city: "NY" }] }` |
+| `$or`    | Logical OR   | `{ $or: [{ city: "NY" }, { city: "LA" }] }`        |
 
 
 ## Update Operation Queries
@@ -76,3 +63,4 @@ db.inventory.updateOne(
 
 Refer:
 - [MongoDB CRUD Operations](https://www.mongodb.com/docs/manual/crud/)
+- [Query Operators](https://www.mongodb.com/docs/manual/reference/mql/query-predicates/#std-label-query-selectors)
